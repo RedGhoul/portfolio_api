@@ -7,15 +7,15 @@
         <div class="card-body">
             <ul class="nav" role="tablist">
                 <li role="presentation">
-                    <a href="{{ route('project.index') }}">
-                        Projects
+                    <a href="{{ route('job.index') }}">
+                        Jobs
                     </a>
                 </li>
             </ul>
             <ul class="nav" role="tablist">
                 <li role="presentation">
-                    <a href="{{ route('job.index') }}">
-                        Jobs
+                    <a href="{{ route('project.index') }}">
+                        Projects
                     </a>
                 </li>
             </ul>
@@ -26,6 +26,8 @@
                     </a>
                 </li>
             </ul>
+
+
         </div>
     </div>
 </div>

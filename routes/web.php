@@ -13,15 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
-
-Route::resource('admin/project', 'App\Http\Controllers\Admin\ProjectController');
-Route::resource('admin/job', 'App\Http\Controllers\Admin\JobController');
-Route::resource('admin/job-point', 'App\Http\Controllers\Admin\JobPointController');
+Route::group(['middleware' => 'auth'], function() {
+    Route::resource('admin/project', 'App\Http\Controllers\Admin\ProjectController');
+    Route::resource('admin/job', 'App\Http\Controllers\Admin\JobController');
+    Route::resource('admin/job-point', 'App\Http\Controllers\Admin\JobPointController');
+});

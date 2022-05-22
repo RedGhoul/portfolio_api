@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
-use App\Project;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
@@ -18,23 +18,7 @@ class ProjectsController extends Controller
     public function index(Request $request)
     {
         $projects = Project::latest()->paginate(25);
-
-        return $projects;
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        
-        $project = Project::create($request->all());
-
-        return response()->json($project, 201);
+        return response()->json($projects);
     }
 
     /**
@@ -47,38 +31,7 @@ class ProjectsController extends Controller
     public function show($id)
     {
         $project = Project::findOrFail($id);
-
-        return $project;
+        return response()->json($project);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        
-        $project = Project::findOrFail($id);
-        $project->update($request->all());
-
-        return response()->json($project, 200);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        Project::destroy($id);
-
-        return response()->json(null, 204);
-    }
 }
